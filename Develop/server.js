@@ -17,6 +17,10 @@ mongoose.connect("mongodb://localhost/workout", {
   useUnifiedTopology: true,
 });
 
+app.use(require("./routing/controller"))
+app.use(require("./routing/view"))
+
+
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
