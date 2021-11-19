@@ -17,8 +17,8 @@ mongoose.connect("mongodb://localhost/workout", {
   useUnifiedTopology: true,
 });
 
-app.use(require("./routing/controller"))
-app.use(require("./routing/view"))
+app.use(require("./routes/controller"))
+app.use(require("./routes/view"))
 
 
 app.listen(PORT, () => {

@@ -48,3 +48,33 @@ router.post("/api/workouts", ({body}, res) => {
         res.status(400).json(err);
       });
   });
+
+   //Put request not working in insomnia
+   router.put("/api/workouts/:id", ({ body, params }, res) => {
+    Workout.findByIdAndUpdate(
+        params.id,{
+            $push:{
+                exercises: body
+            }
+        },
+        {new: true, runValidators: true}
+    )
+      .then(updateWorkout => {
+        res.json(updateWorkout);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
+
+  router.delete("/api/workouts/:id", ({ body }, res) => {
+    Workout.findOneAndRemove(body._id)
+      .then(deleteWorkout => {
+        res.json(deleteWorkout);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
+
+  module.exports = router;
