@@ -49,8 +49,9 @@ router.post("/api/workouts", ({body}, res) => {
       });
   });
 
+  //Put request not working in insomnia
   router.put("/api/workouts/:id", ({ body, params }, res) => {
-    Workout.findByIdAndUpdate(
+    Workout.findOneAndUpdate(
         params.id,{
             $push:{
                 exercises: body
@@ -67,7 +68,7 @@ router.post("/api/workouts", ({body}, res) => {
   });
 
   router.delete("/api/workouts/:id", ({ body }, res) => {
-    Workout.findByIdAndDelete(body._id)
+    Workout.findOneAndRemove(body._id)
       .then(deleteWorkout => {
         res.json(deleteWorkout);
       })
